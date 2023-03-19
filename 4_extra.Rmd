@@ -588,7 +588,7 @@ quest_20$ln_kiki <- factor(quest_20$ln_kiki,
 
 # tabela
 
-table1 <- freq_n_ord(quest_22$kiki_bouba)
+table1 <- freq_n_ord(quest_23$kiki_bouba)
 ```
 
 ---
