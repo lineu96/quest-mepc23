@@ -489,10 +489,10 @@ pander::pander(table2)
 
 table2 <- freq_n_ord(subset(quest_23, quest_23$instituicao == 'ufpr')$setor_ufpr)
 
-table2$Niveis <- c("AC", "AG", "BL", "CH", 
-                   "CT", "ED", "EP", "ET", 
-                   "JD", "SA", "SD", "SL", 
-                   "SP", "TC")
+# table2$Niveis <- c("AC", "AG", "BL", "CH", 
+#                    "CT", "ED", "EP", "ET", 
+#                    "JD", "SA", "SD", "SL", 
+#                    "SP", "TC")
 
 ggplot(data = table2, aes(x = reorder(Niveis, Frequencia), 
                           y = Frequencia)) +
@@ -526,52 +526,52 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, fig.height=12}
 
-compara <- 
-  rbind(
-    freq_n_ord(subset(quest_23, quest_23$instituicao == 'ufpr')$setor_ufpr),
-    freq_n_ord(subset(quest_22, quest_22$instituicao == 'ufpr')$setor_ufpr),
-    freq_n_ord(subset(quest_21, quest_21$instituicao == 'ufpr')$setor_ufpr),
-    freq_n_ord(subset(quest_20, quest_20$ln_instituicao == 'ufpr')$ln_setorAtuacao))
-
-compara$Niveis <- c("AC", "AG", "BL", "CH", 
-                    "CT", "ED", "EP", "ET", 
-                    "JD", "SA", "SD", "SL", 
-                    "SP", "TC")
-
-compara$Ano <- c(rep('2023',14),
-                 rep('2022',14), 
-                 rep('2021',14), 
-                 rep('2020',14))
-
-compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
-
-ggplot(compara, 
-       aes(x=reorder(Niveis, Frequencia.relativa), 
-           y=Frequencia.relativa, fill=Ano)) + 
-  geom_bar(stat = 'identity',
-           col = 1,
-           lwd = 1, 
-           position = 'dodge') +  
-  ylim(c(0, 
-         (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
-  coord_flip() +
-  geom_text(aes(label = Frequencia.relativa),
-            hjust=-0.1, 
-            color=1, 
-            size=5, 
-            position=position_dodge(width=0.9), 
-            vjust=0.5)+
-  ylab("Proporção") +
-  xlab("") +
-  ggtitle("Setor UFPR")+
-  theme_classic() + theme(#legend.position = 'none',
-                          plot.title = element_text(family = "Helvetica", 
-                                                    face = "bold", 
-                                                    size = (20),
-                                                    hjust = 0.5),
-                          axis.title = element_text(face = "bold",
-                                                    size = 15),
-                          text = element_text(size=20))
+# compara <- 
+#   rbind(
+#     freq_n_ord(subset(quest_23, quest_23$instituicao == 'ufpr')$setor_ufpr),
+#     freq_n_ord(subset(quest_22, quest_22$instituicao == 'ufpr')$setor_ufpr),
+#     freq_n_ord(subset(quest_21, quest_21$instituicao == 'ufpr')$setor_ufpr),
+#     freq_n_ord(subset(quest_20, quest_20$ln_instituicao == 'ufpr')$ln_setorAtuacao))
+# 
+# compara$Niveis <- c("AC", "AG", "BL", "CH", 
+#                     "CT", "ED", "EP", "ET", 
+#                     "JD", "SA", "SD", "SL", 
+#                     "SP", "TC")
+# 
+# compara$Ano <- c(rep('2023',14),
+#                  rep('2022',14), 
+#                  rep('2021',14), 
+#                  rep('2020',14))
+# 
+# compara$Frequencia.relativa <- round(compara$Frequencia.relativa,2)
+# 
+# ggplot(compara, 
+#        aes(x=reorder(Niveis, Frequencia.relativa), 
+#            y=Frequencia.relativa, fill=Ano)) + 
+#   geom_bar(stat = 'identity',
+#            col = 1,
+#            lwd = 1, 
+#            position = 'dodge') +  
+#   ylim(c(0, 
+#          (max(compara$Frequencia.relativa)+ (max(compara$Frequencia.relativa)*0.1))))+
+#   coord_flip() +
+#   geom_text(aes(label = Frequencia.relativa),
+#             hjust=-0.1, 
+#             color=1, 
+#             size=5, 
+#             position=position_dodge(width=0.9), 
+#             vjust=0.5)+
+#   ylab("Proporção") +
+#   xlab("") +
+#   ggtitle("Setor UFPR")+
+#   theme_classic() + theme(#legend.position = 'none',
+#                           plot.title = element_text(family = "Helvetica", 
+#                                                     face = "bold", 
+#                                                     size = (20),
+#                                                     hjust = 0.5),
+#                           axis.title = element_text(face = "bold",
+#                                                     size = 15),
+#                           text = element_text(size=20))
 
 ```
 

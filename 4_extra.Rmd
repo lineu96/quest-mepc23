@@ -51,16 +51,10 @@ knitr::opts_chunk$set(echo = TRUE, cache = FALSE)
 <center>
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
 
-quest_23$indica_foto <- c(rep('S/ barba', 50), #50 
-                          rep('C/ barba', 50), #100
-                          rep('S/ barba', 50), #150
-                          rep('C/ barba', 50), #200
-                          rep('S/ barba', 50), #250 
-                          rep('C/ barba', 50), #300
-                          rep('S/ barba', 50), #350
-                          rep('C/ barba', 50), #400
-                          rep('S/ barba', 50), #450
-                          rep('S/ barba', 2) #452
+quest_23$indica_foto <- c(rep('C/ barba', 103),
+                          rep('S/ barba', 101)#,
+                          #rep('C/ barba', 50),
+                          #rep('S/ barba', 50)
                           ) 
 
 idade_foto <- subset(quest_23, idade_foto >= 18 & idade_foto <= 60)

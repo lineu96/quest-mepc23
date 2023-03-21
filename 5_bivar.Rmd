@@ -340,34 +340,6 @@ ggplot(data = subset(quest_23, idade >=15 &
 
 ---
 
-#### Tempo até a Universidade x Uso de aplicativos de mobilidade
-
-```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, warning=FALSE, fig.width=10}
-ggplot(data = subset(quest_23, tempo_ies >=0 & 
-                       tempo_ies <=100 & 
-                       app_transporte >=0 & 
-                       app_transporte <=100), 
-       mapping = aes(x = tempo_ies,
-                     y = app_transporte)) +
-  geom_point()+
-  geom_smooth(method = 'lm', se=F, col=2)+
-  geom_smooth(se=F)+
-  xlab("Tempo até a Universidade") +
-  ylab("Número de vezes que usa app") +
-  ggtitle("Tempo até a Universidade x Uso de aplicativos de mobilidade")+
-  theme_classic() + theme(legend.position = 'none',
-                          plot.title = element_text(family = "Helvetica", 
-                                                    face = "bold", 
-                                                    size = (20),
-                                                    hjust = 0.5),
-                          axis.title = element_text(face = "bold",
-                                                    size = 15),
-                          text = element_text(size=15)) 
-
-```
-
----
-
 ###
 
 

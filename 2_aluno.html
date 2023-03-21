@@ -13,7 +13,7 @@
 
 <title>Questões pessoais</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -131,11 +131,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -164,8 +168,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -173,16 +177,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -414,13 +411,13 @@ class="section level3 tabset tabset-fade tabset-pills">
 <tbody>
 <tr class="odd">
 <td align="center">Feminino</td>
-<td align="center">243</td>
-<td align="center">0.5376</td>
+<td align="center">114</td>
+<td align="center">0.5616</td>
 </tr>
 <tr class="even">
 <td align="center">Masculino</td>
-<td align="center">209</td>
-<td align="center">0.4624</td>
+<td align="center">89</td>
+<td align="center">0.4384</td>
 </tr>
 <tr class="odd">
 <td align="center">Prefiro não responder</td>
@@ -466,48 +463,48 @@ class="section level3 tabset tabset-fade tabset-pills">
 <tbody>
 <tr class="odd">
 <td align="center">[150,155]</td>
-<td align="center">23</td>
-<td align="center">0.05088</td>
+<td align="center">6</td>
+<td align="center">0.02956</td>
 </tr>
 <tr class="even">
 <td align="center">(155,160]</td>
-<td align="center">51</td>
-<td align="center">0.1128</td>
+<td align="center">25</td>
+<td align="center">0.1232</td>
 </tr>
 <tr class="odd">
 <td align="center">(160,165]</td>
-<td align="center">104</td>
-<td align="center">0.2301</td>
+<td align="center">50</td>
+<td align="center">0.2463</td>
 </tr>
 <tr class="even">
 <td align="center">(165,170]</td>
-<td align="center">65</td>
-<td align="center">0.1438</td>
+<td align="center">38</td>
+<td align="center">0.1872</td>
 </tr>
 <tr class="odd">
 <td align="center">(170,175]</td>
-<td align="center">87</td>
-<td align="center">0.1925</td>
+<td align="center">34</td>
+<td align="center">0.1675</td>
 </tr>
 <tr class="even">
 <td align="center">(175,180]</td>
-<td align="center">42</td>
-<td align="center">0.09292</td>
+<td align="center">26</td>
+<td align="center">0.1281</td>
 </tr>
 <tr class="odd">
 <td align="center">(180,185]</td>
-<td align="center">43</td>
-<td align="center">0.09513</td>
+<td align="center">14</td>
+<td align="center">0.06897</td>
 </tr>
 <tr class="even">
 <td align="center">(185,190]</td>
-<td align="center">31</td>
-<td align="center">0.06858</td>
+<td align="center">8</td>
+<td align="center">0.03941</td>
 </tr>
 <tr class="odd">
 <td align="center">(190,195]</td>
-<td align="center">6</td>
-<td align="center">0.01327</td>
+<td align="center">2</td>
+<td align="center">0.009852</td>
 </tr>
 </tbody>
 </table>
@@ -538,12 +535,12 @@ class="section level3 tabset tabset-fade tabset-pills">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">150</td>
-<td align="center">163.8</td>
-<td align="center">170.3</td>
-<td align="center">170</td>
-<td align="center">177</td>
-<td align="center">195</td>
+<td align="center">151</td>
+<td align="center">163</td>
+<td align="center">169.6</td>
+<td align="center">169</td>
+<td align="center">175</td>
+<td align="center">194</td>
 </tr>
 </tbody>
 </table>
@@ -562,9 +559,9 @@ class="section level3 tabset tabset-fade tabset-pills">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">45</td>
-<td align="center">94.08</td>
-<td align="center">9.7</td>
+<td align="center">43</td>
+<td align="center">76.8</td>
+<td align="center">8.763</td>
 </tr>
 </tbody>
 </table>
@@ -640,48 +637,58 @@ class="section level3 tabset tabset-fade tabset-pills">
 <tbody>
 <tr class="odd">
 <td align="center">[40,50]</td>
-<td align="center">23</td>
-<td align="center">0.05088</td>
+<td align="center">9</td>
+<td align="center">0.04455</td>
 </tr>
 <tr class="even">
 <td align="center">(50,60]</td>
-<td align="center">86</td>
-<td align="center">0.1903</td>
+<td align="center">33</td>
+<td align="center">0.1634</td>
 </tr>
 <tr class="odd">
 <td align="center">(60,70]</td>
-<td align="center">112</td>
-<td align="center">0.2478</td>
+<td align="center">48</td>
+<td align="center">0.2376</td>
 </tr>
 <tr class="even">
 <td align="center">(70,80]</td>
-<td align="center">96</td>
-<td align="center">0.2124</td>
+<td align="center">55</td>
+<td align="center">0.2723</td>
 </tr>
 <tr class="odd">
 <td align="center">(80,90]</td>
-<td align="center">70</td>
-<td align="center">0.1549</td>
+<td align="center">26</td>
+<td align="center">0.1287</td>
 </tr>
 <tr class="even">
 <td align="center">(90,100]</td>
-<td align="center">35</td>
-<td align="center">0.07743</td>
+<td align="center">18</td>
+<td align="center">0.08911</td>
 </tr>
 <tr class="odd">
 <td align="center">(100,110]</td>
-<td align="center">16</td>
-<td align="center">0.0354</td>
+<td align="center">6</td>
+<td align="center">0.0297</td>
 </tr>
 <tr class="even">
 <td align="center">(110,120]</td>
-<td align="center">11</td>
-<td align="center">0.02434</td>
+<td align="center">3</td>
+<td align="center">0.01485</td>
 </tr>
 <tr class="odd">
 <td align="center">(120,130]</td>
 <td align="center">3</td>
-<td align="center">0.006637</td>
+<td align="center">0.01485</td>
+</tr>
+<tr class="even">
+<td align="center">(130,140]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">(140,150]</td>
+<td align="center">1</td>
+<td align="center">0.00495</td>
 </tr>
 </tbody>
 </table>
@@ -712,12 +719,12 @@ class="section level3 tabset tabset-fade tabset-pills">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">44</td>
-<td align="center">61</td>
-<td align="center">73.83</td>
-<td align="center">72</td>
-<td align="center">85</td>
-<td align="center">130</td>
+<td align="center">47</td>
+<td align="center">62.25</td>
+<td align="center">74.74</td>
+<td align="center">75</td>
+<td align="center">83.75</td>
+<td align="center">150</td>
 </tr>
 </tbody>
 </table>
@@ -736,9 +743,9 @@ class="section level3 tabset tabset-fade tabset-pills">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">86</td>
-<td align="center">279</td>
-<td align="center">16.7</td>
+<td align="center">103</td>
+<td align="center">278.6</td>
+<td align="center">16.69</td>
 </tr>
 </tbody>
 </table>
@@ -814,74 +821,44 @@ Corpórea</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">[16,18]</td>
-<td align="center">8</td>
-<td align="center">0.0177</td>
+<td align="center">[15,20]</td>
+<td align="center">12</td>
+<td align="center">0.05941</td>
 </tr>
 <tr class="even">
-<td align="center">(18,20]</td>
-<td align="center">26</td>
-<td align="center">0.05752</td>
+<td align="center">(20,25]</td>
+<td align="center">93</td>
+<td align="center">0.4604</td>
 </tr>
 <tr class="odd">
-<td align="center">(20,22]</td>
-<td align="center">70</td>
-<td align="center">0.1549</td>
+<td align="center">(25,30]</td>
+<td align="center">60</td>
+<td align="center">0.297</td>
 </tr>
 <tr class="even">
-<td align="center">(22,24]</td>
-<td align="center">104</td>
-<td align="center">0.2301</td>
+<td align="center">(30,35]</td>
+<td align="center">25</td>
+<td align="center">0.1238</td>
 </tr>
 <tr class="odd">
-<td align="center">(24,26]</td>
-<td align="center">76</td>
-<td align="center">0.1681</td>
+<td align="center">(35,40]</td>
+<td align="center">10</td>
+<td align="center">0.0495</td>
 </tr>
 <tr class="even">
-<td align="center">(26,28]</td>
-<td align="center">57</td>
-<td align="center">0.1261</td>
-</tr>
-<tr class="odd">
-<td align="center">(28,30]</td>
-<td align="center">51</td>
-<td align="center">0.1128</td>
-</tr>
-<tr class="even">
-<td align="center">(30,32]</td>
-<td align="center">22</td>
-<td align="center">0.04867</td>
-</tr>
-<tr class="odd">
-<td align="center">(32,34]</td>
-<td align="center">20</td>
-<td align="center">0.04425</td>
-</tr>
-<tr class="even">
-<td align="center">(34,36]</td>
-<td align="center">9</td>
-<td align="center">0.01991</td>
-</tr>
-<tr class="odd">
-<td align="center">(36,38]</td>
-<td align="center">6</td>
-<td align="center">0.01327</td>
-</tr>
-<tr class="even">
-<td align="center">(38,40]</td>
-<td align="center">2</td>
-<td align="center">0.004425</td>
-</tr>
-<tr class="odd">
-<td align="center">(40,42]</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center">(42,44]</td>
+<td align="center">(40,45]</td>
 <td align="center">1</td>
-<td align="center">0.002212</td>
+<td align="center">0.00495</td>
+</tr>
+<tr class="odd">
+<td align="center">(45,50]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">(50,55]</td>
+<td align="center">1</td>
+<td align="center">0.00495</td>
 </tr>
 </tbody>
 </table>
@@ -912,12 +889,12 @@ Corpórea</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">16.76</td>
-<td align="center">22.2</td>
-<td align="center">25.27</td>
-<td align="center">24.77</td>
-<td align="center">27.77</td>
-<td align="center">43.6</td>
+<td align="center">16.33</td>
+<td align="center">22.31</td>
+<td align="center">25.89</td>
+<td align="center">24.67</td>
+<td align="center">28.19</td>
+<td align="center">50.7</td>
 </tr>
 </tbody>
 </table>
@@ -936,9 +913,9 @@ Corpórea</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">26.84</td>
-<td align="center">18.93</td>
-<td align="center">4.351</td>
+<td align="center">34.38</td>
+<td align="center">25.02</td>
+<td align="center">5.002</td>
 </tr>
 </tbody>
 </table>
@@ -964,28 +941,28 @@ Corpórea</h3>
 <tbody>
 <tr class="odd">
 <td align="center">Abaixo do peso</td>
-<td align="center">8</td>
-<td align="center">0.0177</td>
+<td align="center">4</td>
+<td align="center">0.0199</td>
 </tr>
 <tr class="even">
 <td align="center">Saudável</td>
-<td align="center">227</td>
-<td align="center">0.5022</td>
+<td align="center">100</td>
+<td align="center">0.4975</td>
 </tr>
 <tr class="odd">
 <td align="center">Sobrepeso</td>
-<td align="center">157</td>
-<td align="center">0.3473</td>
+<td align="center">60</td>
+<td align="center">0.2985</td>
 </tr>
 <tr class="even">
 <td align="center">Obesidade</td>
-<td align="center">59</td>
-<td align="center">0.1305</td>
+<td align="center">35</td>
+<td align="center">0.1741</td>
 </tr>
 <tr class="odd">
 <td align="center">Obesidade mórbida</td>
-<td align="center">1</td>
-<td align="center">0.002212</td>
+<td align="center">2</td>
+<td align="center">0.00995</td>
 </tr>
 </tbody>
 </table>
@@ -1048,53 +1025,53 @@ nascimento?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">[20,25]</td>
-<td align="center">46</td>
-<td align="center">0.1024</td>
+<td align="center">49</td>
+<td align="center">0.2414</td>
 </tr>
 <tr class="even">
 <td align="center">(25,30]</td>
-<td align="center">143</td>
-<td align="center">0.3185</td>
+<td align="center">67</td>
+<td align="center">0.33</td>
 </tr>
 <tr class="odd">
 <td align="center">(30,35]</td>
-<td align="center">117</td>
-<td align="center">0.2606</td>
+<td align="center">31</td>
+<td align="center">0.1527</td>
 </tr>
 <tr class="even">
 <td align="center">(35,40]</td>
-<td align="center">51</td>
-<td align="center">0.1136</td>
+<td align="center">23</td>
+<td align="center">0.1133</td>
 </tr>
 <tr class="odd">
 <td align="center">(40,45]</td>
-<td align="center">51</td>
-<td align="center">0.1136</td>
+<td align="center">16</td>
+<td align="center">0.07882</td>
 </tr>
 <tr class="even">
 <td align="center">(45,50]</td>
-<td align="center">15</td>
-<td align="center">0.03341</td>
+<td align="center">10</td>
+<td align="center">0.04926</td>
 </tr>
 <tr class="odd">
 <td align="center">(50,55]</td>
-<td align="center">13</td>
-<td align="center">0.02895</td>
+<td align="center">3</td>
+<td align="center">0.01478</td>
 </tr>
 <tr class="even">
 <td align="center">(55,60]</td>
-<td align="center">9</td>
-<td align="center">0.02004</td>
+<td align="center">2</td>
+<td align="center">0.009852</td>
 </tr>
 <tr class="odd">
 <td align="center">(60,65]</td>
-<td align="center">2</td>
-<td align="center">0.004454</td>
+<td align="center">1</td>
+<td align="center">0.004926</td>
 </tr>
 <tr class="even">
 <td align="center">(65,70]</td>
-<td align="center">2</td>
-<td align="center">0.004454</td>
+<td align="center">1</td>
+<td align="center">0.004926</td>
 </tr>
 </tbody>
 </table>
@@ -1126,11 +1103,11 @@ nascimento?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">23</td>
-<td align="center">28</td>
-<td align="center">33.93</td>
-<td align="center">32</td>
-<td align="center">38</td>
+<td align="center">22</td>
+<td align="center">26</td>
+<td align="center">32.07</td>
+<td align="center">30</td>
+<td align="center">36</td>
 <td align="center">66</td>
 </tr>
 </tbody>
@@ -1150,9 +1127,9 @@ nascimento?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">43</td>
-<td align="center">69.8</td>
-<td align="center">8.354</td>
+<td align="center">44</td>
+<td align="center">71.53</td>
+<td align="center">8.458</td>
 </tr>
 </tbody>
 </table>
@@ -1219,63 +1196,63 @@ nascimento?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">1</td>
-<td align="center">37</td>
-<td align="center">0.08186</td>
+<td align="center">14</td>
+<td align="center">0.06897</td>
 </tr>
 <tr class="even">
 <td align="center">2</td>
-<td align="center">33</td>
-<td align="center">0.07301</td>
+<td align="center">14</td>
+<td align="center">0.06897</td>
 </tr>
 <tr class="odd">
 <td align="center">3</td>
-<td align="center">38</td>
-<td align="center">0.08407</td>
+<td align="center">25</td>
+<td align="center">0.1232</td>
 </tr>
 <tr class="even">
 <td align="center">4</td>
-<td align="center">33</td>
-<td align="center">0.07301</td>
+<td align="center">21</td>
+<td align="center">0.1034</td>
 </tr>
 <tr class="odd">
 <td align="center">5</td>
-<td align="center">35</td>
-<td align="center">0.07743</td>
+<td align="center">22</td>
+<td align="center">0.1084</td>
 </tr>
 <tr class="even">
 <td align="center">6</td>
-<td align="center">40</td>
-<td align="center">0.0885</td>
+<td align="center">13</td>
+<td align="center">0.06404</td>
 </tr>
 <tr class="odd">
 <td align="center">7</td>
-<td align="center">39</td>
-<td align="center">0.08628</td>
+<td align="center">15</td>
+<td align="center">0.07389</td>
 </tr>
 <tr class="even">
 <td align="center">8</td>
-<td align="center">37</td>
-<td align="center">0.08186</td>
+<td align="center">15</td>
+<td align="center">0.07389</td>
 </tr>
 <tr class="odd">
 <td align="center">9</td>
-<td align="center">33</td>
-<td align="center">0.07301</td>
+<td align="center">14</td>
+<td align="center">0.06897</td>
 </tr>
 <tr class="even">
 <td align="center">10</td>
-<td align="center">41</td>
-<td align="center">0.09071</td>
+<td align="center">15</td>
+<td align="center">0.07389</td>
 </tr>
 <tr class="odd">
 <td align="center">11</td>
-<td align="center">39</td>
-<td align="center">0.08628</td>
+<td align="center">19</td>
+<td align="center">0.0936</td>
 </tr>
 <tr class="even">
 <td align="center">12</td>
-<td align="center">47</td>
-<td align="center">0.104</td>
+<td align="center">16</td>
+<td align="center">0.07882</td>
 </tr>
 </tbody>
 </table>
@@ -1312,29 +1289,29 @@ categorias descreve melhor sua situação de emprego?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">trabalho com carteira assinada/vinculo formal</td>
-<td align="center">170</td>
-<td align="center">0.3761</td>
+<td align="center">bolsista em tempo integral</td>
+<td align="center">94</td>
+<td align="center">0.4631</td>
 </tr>
 <tr class="even">
-<td align="center">bolsista em tempo integral</td>
-<td align="center">130</td>
-<td align="center">0.2876</td>
+<td align="center">trabalho com carteira assinada/vinculo formal</td>
+<td align="center">58</td>
+<td align="center">0.2857</td>
 </tr>
 <tr class="odd">
 <td align="center">outro</td>
-<td align="center">70</td>
-<td align="center">0.1549</td>
+<td align="center">36</td>
+<td align="center">0.1773</td>
 </tr>
 <tr class="even">
 <td align="center">trabalho por contrato</td>
-<td align="center">55</td>
-<td align="center">0.1217</td>
+<td align="center">10</td>
+<td align="center">0.04926</td>
 </tr>
 <tr class="odd">
 <td align="center">trabalho ocasional</td>
-<td align="center">27</td>
-<td align="center">0.05973</td>
+<td align="center">5</td>
+<td align="center">0.02463</td>
 </tr>
 </tbody>
 </table>
@@ -1376,33 +1353,33 @@ class="section level3 tabset tabset-fade tabset-pills">
 <tr class="odd">
 <td align="center">com o namorado(a)/noivo(a)/conjuge/nucleo familiar
 proprio</td>
-<td align="center">251</td>
-<td align="center">0.5553</td>
+<td align="center">99</td>
+<td align="center">0.4877</td>
 </tr>
 <tr class="even">
-<td align="center">sozinho</td>
-<td align="center">82</td>
-<td align="center">0.1814</td>
+<td align="center">com os pais</td>
+<td align="center">36</td>
+<td align="center">0.1773</td>
 </tr>
 <tr class="odd">
-<td align="center">com os pais</td>
-<td align="center">66</td>
-<td align="center">0.146</td>
+<td align="center">sozinho</td>
+<td align="center">32</td>
+<td align="center">0.1576</td>
 </tr>
 <tr class="even">
 <td align="center">com outros familiares</td>
-<td align="center">19</td>
-<td align="center">0.04204</td>
+<td align="center">14</td>
+<td align="center">0.06897</td>
 </tr>
 <tr class="odd">
-<td align="center">com amigos</td>
-<td align="center">17</td>
-<td align="center">0.03761</td>
+<td align="center">pensao, quarto alugado ou algo similar</td>
+<td align="center">13</td>
+<td align="center">0.06404</td>
 </tr>
 <tr class="even">
-<td align="center">pensao, quarto alugado ou algo similar</td>
-<td align="center">17</td>
-<td align="center">0.03761</td>
+<td align="center">com amigos</td>
+<td align="center">9</td>
+<td align="center">0.04433</td>
 </tr>
 </tbody>
 </table>
@@ -1443,44 +1420,64 @@ tem?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">[0,1]</td>
-<td align="center">202</td>
-<td align="center">0.4469</td>
+<td align="center">[0,2]</td>
+<td align="center">156</td>
+<td align="center">0.7685</td>
 </tr>
 <tr class="even">
-<td align="center">(1,2]</td>
-<td align="center">134</td>
-<td align="center">0.2965</td>
+<td align="center">(2,4]</td>
+<td align="center">37</td>
+<td align="center">0.1823</td>
 </tr>
 <tr class="odd">
-<td align="center">(2,3]</td>
-<td align="center">62</td>
-<td align="center">0.1372</td>
+<td align="center">(4,6]</td>
+<td align="center">6</td>
+<td align="center">0.02956</td>
 </tr>
 <tr class="even">
-<td align="center">(3,4]</td>
-<td align="center">26</td>
-<td align="center">0.05752</td>
-</tr>
-<tr class="odd">
-<td align="center">(4,5]</td>
-<td align="center">13</td>
-<td align="center">0.02876</td>
-</tr>
-<tr class="even">
-<td align="center">(5,6]</td>
-<td align="center">14</td>
-<td align="center">0.03097</td>
-</tr>
-<tr class="odd">
-<td align="center">(6,7]</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center">(7,8]</td>
+<td align="center">(6,8]</td>
 <td align="center">1</td>
-<td align="center">0.002212</td>
+<td align="center">0.004926</td>
+</tr>
+<tr class="odd">
+<td align="center">(8,10]</td>
+<td align="center">1</td>
+<td align="center">0.004926</td>
+</tr>
+<tr class="even">
+<td align="center">(10,12]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">(12,14]</td>
+<td align="center">1</td>
+<td align="center">0.004926</td>
+</tr>
+<tr class="even">
+<td align="center">(14,16]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">(16,18]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">(18,20]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">(20,22]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">(22,24]</td>
+<td align="center">1</td>
+<td align="center">0.004926</td>
 </tr>
 </tbody>
 </table>
@@ -1513,10 +1510,10 @@ tem?</h3>
 <tr class="odd">
 <td align="center">0</td>
 <td align="center">1</td>
-<td align="center">1.931</td>
+<td align="center">1.892</td>
+<td align="center">1</td>
 <td align="center">2</td>
-<td align="center">3</td>
-<td align="center">8</td>
+<td align="center">24</td>
 </tr>
 </tbody>
 </table>
@@ -1535,9 +1532,9 @@ tem?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">8</td>
-<td align="center">1.94</td>
-<td align="center">1.393</td>
+<td align="center">24</td>
+<td align="center">4.82</td>
+<td align="center">2.195</td>
 </tr>
 </tbody>
 </table>
@@ -1598,28 +1595,28 @@ class="section level3 tabset tabset-fade tabset-pills">
 <tbody>
 <tr class="odd">
 <td align="center">outro estado</td>
-<td align="center">170</td>
-<td align="center">0.3761</td>
+<td align="center">71</td>
+<td align="center">0.3498</td>
 </tr>
 <tr class="even">
 <td align="center">interior do parana</td>
-<td align="center">139</td>
-<td align="center">0.3075</td>
+<td align="center">69</td>
+<td align="center">0.3399</td>
 </tr>
 <tr class="odd">
 <td align="center">curitiba</td>
-<td align="center">115</td>
-<td align="center">0.2544</td>
+<td align="center">44</td>
+<td align="center">0.2167</td>
 </tr>
 <tr class="even">
-<td align="center">outro pais</td>
-<td align="center">15</td>
-<td align="center">0.03319</td>
+<td align="center">regiao metropolitana</td>
+<td align="center">10</td>
+<td align="center">0.04926</td>
 </tr>
 <tr class="odd">
-<td align="center">regiao metropolitana</td>
-<td align="center">13</td>
-<td align="center">0.02876</td>
+<td align="center">outro pais</td>
+<td align="center">9</td>
+<td align="center">0.04433</td>
 </tr>
 </tbody>
 </table>
@@ -1663,43 +1660,43 @@ presenciais?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">carro/moto proprio</td>
-<td align="center">251</td>
-<td align="center">0.5553</td>
+<td align="center">109</td>
+<td align="center">0.5369</td>
 </tr>
 <tr class="even">
 <td align="center">transporte publico</td>
-<td align="center">95</td>
-<td align="center">0.2102</td>
+<td align="center">40</td>
+<td align="center">0.197</td>
 </tr>
 <tr class="odd">
 <td align="center">a pe</td>
-<td align="center">38</td>
-<td align="center">0.08407</td>
+<td align="center">26</td>
+<td align="center">0.1281</td>
 </tr>
 <tr class="even">
 <td align="center">bicicleta</td>
-<td align="center">32</td>
-<td align="center">0.0708</td>
+<td align="center">12</td>
+<td align="center">0.05911</td>
 </tr>
 <tr class="odd">
 <td align="center">taxi/aplicativo</td>
-<td align="center">17</td>
-<td align="center">0.03761</td>
+<td align="center">7</td>
+<td align="center">0.03448</td>
 </tr>
 <tr class="even">
 <td align="center">servico fretado de van/onibus</td>
-<td align="center">12</td>
-<td align="center">0.02655</td>
+<td align="center">4</td>
+<td align="center">0.0197</td>
 </tr>
 <tr class="odd">
 <td align="center">outro</td>
-<td align="center">4</td>
-<td align="center">0.00885</td>
+<td align="center">3</td>
+<td align="center">0.01478</td>
 </tr>
 <tr class="even">
 <td align="center">carona com amigos</td>
-<td align="center">3</td>
-<td align="center">0.006637</td>
+<td align="center">2</td>
+<td align="center">0.009852</td>
 </tr>
 </tbody>
 </table>
@@ -1742,33 +1739,33 @@ demorava ou demoraria para chegar a Universidade?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">[0,50]</td>
-<td align="center">352</td>
-<td align="center">0.784</td>
+<td align="center">163</td>
+<td align="center">0.803</td>
 </tr>
 <tr class="even">
 <td align="center">(50,100]</td>
-<td align="center">58</td>
-<td align="center">0.1292</td>
+<td align="center">20</td>
+<td align="center">0.09852</td>
 </tr>
 <tr class="odd">
 <td align="center">(100,150]</td>
-<td align="center">15</td>
-<td align="center">0.03341</td>
+<td align="center">10</td>
+<td align="center">0.04926</td>
 </tr>
 <tr class="even">
 <td align="center">(150,200]</td>
-<td align="center">5</td>
-<td align="center">0.01114</td>
+<td align="center">3</td>
+<td align="center">0.01478</td>
 </tr>
 <tr class="odd">
 <td align="center">(200,250]</td>
-<td align="center">4</td>
-<td align="center">0.008909</td>
+<td align="center">3</td>
+<td align="center">0.01478</td>
 </tr>
 <tr class="even">
 <td align="center">(250,300]</td>
-<td align="center">6</td>
-<td align="center">0.01336</td>
+<td align="center">0</td>
+<td align="center">0</td>
 </tr>
 <tr class="odd">
 <td align="center">(300,350]</td>
@@ -1778,7 +1775,7 @@ demorava ou demoraria para chegar a Universidade?</h3>
 <tr class="even">
 <td align="center">(350,400]</td>
 <td align="center">2</td>
-<td align="center">0.004454</td>
+<td align="center">0.009852</td>
 </tr>
 <tr class="odd">
 <td align="center">(400,450]</td>
@@ -1787,13 +1784,18 @@ demorava ou demoraria para chegar a Universidade?</h3>
 </tr>
 <tr class="even">
 <td align="center">(450,500]</td>
-<td align="center">6</td>
-<td align="center">0.01336</td>
+<td align="center">1</td>
+<td align="center">0.004926</td>
 </tr>
 <tr class="odd">
 <td align="center">(500,550]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">(550,600]</td>
 <td align="center">1</td>
-<td align="center">0.002227</td>
+<td align="center">0.004926</td>
 </tr>
 </tbody>
 </table>
@@ -1824,12 +1826,12 @@ demorava ou demoraria para chegar a Universidade?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">0</td>
+<td align="center">2</td>
 <td align="center">15</td>
-<td align="center">48.48</td>
+<td align="center">46.92</td>
 <td align="center">25</td>
 <td align="center">45</td>
-<td align="center">540</td>
+<td align="center">600</td>
 </tr>
 </tbody>
 </table>
@@ -1848,9 +1850,9 @@ demorava ou demoraria para chegar a Universidade?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">540</td>
-<td align="center">5940</td>
-<td align="center">77.07</td>
+<td align="center">598</td>
+<td align="center">5331</td>
+<td align="center">73.01</td>
 </tr>
 </tbody>
 </table>
@@ -1912,9 +1914,9 @@ usa táxi/aplicativo de transporte durante o mês?</h3>
 <div id="tabela-1-6" class="section level4">
 <h4>Tabela 1</h4>
 <center>
-<table style="width:62%;">
+<table style="width:64%;">
 <colgroup>
-<col width="13%" />
+<col width="15%" />
 <col width="18%" />
 <col width="30%" />
 </colgroup>
@@ -1927,54 +1929,54 @@ usa táxi/aplicativo de transporte durante o mês?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">[0,5]</td>
-<td align="center">386</td>
-<td align="center">0.854</td>
+<td align="center">[0,10]</td>
+<td align="center">193</td>
+<td align="center">0.9507</td>
 </tr>
 <tr class="even">
-<td align="center">(5,10]</td>
-<td align="center">49</td>
-<td align="center">0.1084</td>
+<td align="center">(10,20]</td>
+<td align="center">8</td>
+<td align="center">0.03941</td>
 </tr>
 <tr class="odd">
-<td align="center">(10,15]</td>
-<td align="center">6</td>
-<td align="center">0.01327</td>
-</tr>
-<tr class="even">
-<td align="center">(15,20]</td>
-<td align="center">6</td>
-<td align="center">0.01327</td>
-</tr>
-<tr class="odd">
-<td align="center">(20,25]</td>
-<td align="center">4</td>
-<td align="center">0.00885</td>
-</tr>
-<tr class="even">
-<td align="center">(25,30]</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">(30,35]</td>
+<td align="center">(20,30]</td>
 <td align="center">0</td>
 <td align="center">0</td>
 </tr>
 <tr class="even">
-<td align="center">(35,40]</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">(40,45]</td>
-<td align="center">0</td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center">(45,50]</td>
+<td align="center">(30,40]</td>
 <td align="center">1</td>
-<td align="center">0.002212</td>
+<td align="center">0.004926</td>
+</tr>
+<tr class="odd">
+<td align="center">(40,50]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">(50,60]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">(60,70]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">(70,80]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">(80,90]</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">(90,100]</td>
+<td align="center">1</td>
+<td align="center">0.004926</td>
 </tr>
 </tbody>
 </table>
@@ -2007,10 +2009,10 @@ usa táxi/aplicativo de transporte durante o mês?</h3>
 <tr class="odd">
 <td align="center">0</td>
 <td align="center">0</td>
-<td align="center">2.726</td>
-<td align="center">1</td>
+<td align="center">3.271</td>
+<td align="center">0</td>
 <td align="center">4</td>
-<td align="center">50</td>
+<td align="center">100</td>
 </tr>
 </tbody>
 </table>
@@ -2029,9 +2031,9 @@ usa táxi/aplicativo de transporte durante o mês?</h3>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">50</td>
-<td align="center">23.55</td>
-<td align="center">4.853</td>
+<td align="center">100</td>
+<td align="center">71.29</td>
+<td align="center">8.443</td>
 </tr>
 </tbody>
 </table>
@@ -2108,43 +2110,43 @@ estimação?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">cachorro</td>
-<td align="center">235</td>
-<td align="center">0.4719</td>
+<td align="center">102</td>
+<td align="center">0.418</td>
 </tr>
 <tr class="even">
 <td align="center">nao possuo</td>
-<td align="center">155</td>
-<td align="center">0.3112</td>
+<td align="center">69</td>
+<td align="center">0.2828</td>
 </tr>
 <tr class="odd">
 <td align="center">gato</td>
-<td align="center">85</td>
-<td align="center">0.1707</td>
+<td align="center">49</td>
+<td align="center">0.2008</td>
 </tr>
 <tr class="even">
-<td align="center">outro</td>
-<td align="center">8</td>
-<td align="center">0.01606</td>
-</tr>
-<tr class="odd">
 <td align="center">passaro</td>
-<td align="center">7</td>
-<td align="center">0.01406</td>
-</tr>
-<tr class="even">
-<td align="center">peixe</td>
-<td align="center">7</td>
-<td align="center">0.01406</td>
+<td align="center">11</td>
+<td align="center">0.04508</td>
 </tr>
 <tr class="odd">
 <td align="center">tartaruga</td>
-<td align="center">1</td>
-<td align="center">0.002008</td>
+<td align="center">4</td>
+<td align="center">0.01639</td>
 </tr>
 <tr class="even">
 <td align="center">coelho</td>
-<td align="center">0</td>
-<td align="center">0</td>
+<td align="center">4</td>
+<td align="center">0.01639</td>
+</tr>
+<tr class="odd">
+<td align="center">outro</td>
+<td align="center">4</td>
+<td align="center">0.01639</td>
+</tr>
+<tr class="even">
+<td align="center">peixe</td>
+<td align="center">1</td>
+<td align="center">0.004098</td>
 </tr>
 </tbody>
 </table>
@@ -2181,48 +2183,48 @@ musical?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">nao toco nenhum instrumento</td>
-<td align="center">344</td>
-<td align="center">0.668</td>
+<td align="center">137</td>
+<td align="center">0.5661</td>
 </tr>
 <tr class="even">
 <td align="center">violao</td>
-<td align="center">68</td>
-<td align="center">0.132</td>
+<td align="center">38</td>
+<td align="center">0.157</td>
 </tr>
 <tr class="odd">
-<td align="center">guitarra</td>
-<td align="center">19</td>
-<td align="center">0.03689</td>
-</tr>
-<tr class="even">
 <td align="center">teclado</td>
-<td align="center">19</td>
-<td align="center">0.03689</td>
-</tr>
-<tr class="odd">
-<td align="center">piano</td>
-<td align="center">18</td>
-<td align="center">0.03495</td>
-</tr>
-<tr class="even">
-<td align="center">flauta</td>
-<td align="center">18</td>
-<td align="center">0.03495</td>
-</tr>
-<tr class="odd">
-<td align="center">contrabaixo</td>
-<td align="center">13</td>
-<td align="center">0.02524</td>
+<td align="center">16</td>
+<td align="center">0.06612</td>
 </tr>
 <tr class="even">
 <td align="center">outro</td>
-<td align="center">12</td>
-<td align="center">0.0233</td>
+<td align="center">16</td>
+<td align="center">0.06612</td>
 </tr>
 <tr class="odd">
+<td align="center">guitarra</td>
+<td align="center">12</td>
+<td align="center">0.04959</td>
+</tr>
+<tr class="even">
+<td align="center">piano</td>
+<td align="center">7</td>
+<td align="center">0.02893</td>
+</tr>
+<tr class="odd">
+<td align="center">contrabaixo</td>
+<td align="center">6</td>
+<td align="center">0.02479</td>
+</tr>
+<tr class="even">
 <td align="center">bateria</td>
-<td align="center">4</td>
-<td align="center">0.007767</td>
+<td align="center">5</td>
+<td align="center">0.02066</td>
+</tr>
+<tr class="odd">
+<td align="center">flauta</td>
+<td align="center">5</td>
+<td align="center">0.02066</td>
 </tr>
 </tbody>
 </table>
@@ -2259,38 +2261,38 @@ participa?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">instagram</td>
-<td align="center">395</td>
-<td align="center">0.3251</td>
+<td align="center">177</td>
+<td align="center">0.3166</td>
 </tr>
 <tr class="even">
 <td align="center">facebook</td>
-<td align="center">316</td>
-<td align="center">0.2601</td>
+<td align="center">145</td>
+<td align="center">0.2594</td>
 </tr>
 <tr class="odd">
 <td align="center">linkedin</td>
-<td align="center">285</td>
-<td align="center">0.2346</td>
+<td align="center">125</td>
+<td align="center">0.2236</td>
 </tr>
 <tr class="even">
 <td align="center">twitter</td>
-<td align="center">111</td>
-<td align="center">0.09136</td>
+<td align="center">53</td>
+<td align="center">0.09481</td>
 </tr>
 <tr class="odd">
-<td align="center">outras</td>
-<td align="center">49</td>
-<td align="center">0.04033</td>
+<td align="center">google+</td>
+<td align="center">28</td>
+<td align="center">0.05009</td>
 </tr>
 <tr class="even">
-<td align="center">google+</td>
-<td align="center">48</td>
-<td align="center">0.03951</td>
+<td align="center">outras</td>
+<td align="center">25</td>
+<td align="center">0.04472</td>
 </tr>
 <tr class="odd">
 <td align="center">nenhuma</td>
-<td align="center">11</td>
-<td align="center">0.009053</td>
+<td align="center">6</td>
+<td align="center">0.01073</td>
 </tr>
 </tbody>
 </table>
@@ -2327,13 +2329,13 @@ física regularmente?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">sim</td>
-<td align="center">304</td>
-<td align="center">0.6726</td>
+<td align="center">146</td>
+<td align="center">0.7192</td>
 </tr>
 <tr class="even">
 <td align="center">nao</td>
-<td align="center">148</td>
-<td align="center">0.3274</td>
+<td align="center">57</td>
+<td align="center">0.2808</td>
 </tr>
 </tbody>
 </table>
@@ -2370,43 +2372,43 @@ você se exercita?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">0</td>
-<td align="center">104</td>
-<td align="center">0.2301</td>
+<td align="center">42</td>
+<td align="center">0.2069</td>
 </tr>
 <tr class="even">
 <td align="center">1</td>
-<td align="center">29</td>
-<td align="center">0.06416</td>
+<td align="center">14</td>
+<td align="center">0.06897</td>
 </tr>
 <tr class="odd">
 <td align="center">2</td>
-<td align="center">81</td>
-<td align="center">0.1792</td>
+<td align="center">21</td>
+<td align="center">0.1034</td>
 </tr>
 <tr class="even">
 <td align="center">3</td>
-<td align="center">102</td>
-<td align="center">0.2257</td>
+<td align="center">35</td>
+<td align="center">0.1724</td>
 </tr>
 <tr class="odd">
 <td align="center">4</td>
-<td align="center">55</td>
-<td align="center">0.1217</td>
+<td align="center">26</td>
+<td align="center">0.1281</td>
 </tr>
 <tr class="even">
 <td align="center">5</td>
-<td align="center">48</td>
-<td align="center">0.1062</td>
+<td align="center">39</td>
+<td align="center">0.1921</td>
 </tr>
 <tr class="odd">
 <td align="center">6</td>
-<td align="center">25</td>
-<td align="center">0.05531</td>
+<td align="center">16</td>
+<td align="center">0.07882</td>
 </tr>
 <tr class="even">
 <td align="center">7</td>
-<td align="center">8</td>
-<td align="center">0.0177</td>
+<td align="center">10</td>
+<td align="center">0.04926</td>
 </tr>
 </tbody>
 </table>
@@ -2439,9 +2441,9 @@ você se exercita?</h3>
 <tr class="odd">
 <td align="center">0</td>
 <td align="center">1</td>
-<td align="center">2.573</td>
+<td align="center">3.084</td>
 <td align="center">3</td>
-<td align="center">4</td>
+<td align="center">5</td>
 <td align="center">7</td>
 </tr>
 </tbody>
@@ -2462,8 +2464,8 @@ você se exercita?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">7</td>
-<td align="center">3.66</td>
-<td align="center">1.913</td>
+<td align="center">4.651</td>
+<td align="center">2.157</td>
 </tr>
 </tbody>
 </table>
@@ -2525,58 +2527,58 @@ pratica?</h3>
 <tbody>
 <tr class="odd">
 <td align="center">musculacao</td>
-<td align="center">157</td>
-<td align="center">0.2316</td>
+<td align="center">85</td>
+<td align="center">0.256</td>
 </tr>
 <tr class="even">
 <td align="center">caminhada</td>
-<td align="center">140</td>
-<td align="center">0.2065</td>
+<td align="center">71</td>
+<td align="center">0.2139</td>
 </tr>
 <tr class="odd">
 <td align="center">nenhuma</td>
-<td align="center">99</td>
-<td align="center">0.146</td>
+<td align="center">40</td>
+<td align="center">0.1205</td>
 </tr>
 <tr class="even">
 <td align="center">outro</td>
-<td align="center">75</td>
-<td align="center">0.1106</td>
+<td align="center">38</td>
+<td align="center">0.1145</td>
 </tr>
 <tr class="odd">
 <td align="center">corrida</td>
-<td align="center">73</td>
-<td align="center">0.1077</td>
+<td align="center">36</td>
+<td align="center">0.1084</td>
 </tr>
 <tr class="even">
 <td align="center">ciclismo</td>
-<td align="center">54</td>
-<td align="center">0.07965</td>
+<td align="center">22</td>
+<td align="center">0.06627</td>
 </tr>
 <tr class="odd">
 <td align="center">pilates</td>
-<td align="center">37</td>
-<td align="center">0.05457</td>
+<td align="center">11</td>
+<td align="center">0.03313</td>
 </tr>
 <tr class="even">
 <td align="center">natacao</td>
-<td align="center">18</td>
-<td align="center">0.02655</td>
+<td align="center">11</td>
+<td align="center">0.03313</td>
 </tr>
 <tr class="odd">
 <td align="center">futebol</td>
-<td align="center">17</td>
-<td align="center">0.02507</td>
+<td align="center">11</td>
+<td align="center">0.03313</td>
 </tr>
 <tr class="even">
-<td align="center">basquete</td>
-<td align="center">5</td>
-<td align="center">0.007375</td>
+<td align="center">volei</td>
+<td align="center">6</td>
+<td align="center">0.01807</td>
 </tr>
 <tr class="odd">
-<td align="center">volei</td>
-<td align="center">3</td>
-<td align="center">0.004425</td>
+<td align="center">basquete</td>
+<td align="center">1</td>
+<td align="center">0.003012</td>
 </tr>
 </tbody>
 </table>

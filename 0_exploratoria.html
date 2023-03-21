@@ -13,7 +13,7 @@
 
 <title>Um pouco sobre análise exploratória</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -131,11 +131,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -164,8 +168,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -173,16 +177,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -484,18 +481,18 @@ class="section level4">
 <tbody>
 <tr class="odd">
 <td align="center">a</td>
-<td align="center">34</td>
-<td align="center">0.34</td>
+<td align="center">28</td>
+<td align="center">0.28</td>
 </tr>
 <tr class="even">
 <td align="center">b</td>
-<td align="center">36</td>
-<td align="center">0.36</td>
+<td align="center">38</td>
+<td align="center">0.38</td>
 </tr>
 <tr class="odd">
 <td align="center">c</td>
-<td align="center">30</td>
-<td align="center">0.3</td>
+<td align="center">34</td>
+<td align="center">0.34</td>
 </tr>
 </tbody>
 </table>
@@ -521,57 +518,47 @@ class="section level4">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">0</td>
 <td align="center">1</td>
-<td align="center">0.01</td>
-</tr>
-<tr class="even">
-<td align="center">1</td>
-<td align="center">2</td>
-<td align="center">0.02</td>
-</tr>
-<tr class="odd">
-<td align="center">2</td>
-<td align="center">7</td>
-<td align="center">0.07</td>
-</tr>
-<tr class="even">
 <td align="center">3</td>
-<td align="center">14</td>
-<td align="center">0.14</td>
-</tr>
-<tr class="odd">
-<td align="center">4</td>
-<td align="center">23</td>
-<td align="center">0.23</td>
+<td align="center">0.03</td>
 </tr>
 <tr class="even">
-<td align="center">5</td>
-<td align="center">21</td>
-<td align="center">0.21</td>
-</tr>
-<tr class="odd">
-<td align="center">6</td>
-<td align="center">12</td>
-<td align="center">0.12</td>
-</tr>
-<tr class="even">
-<td align="center">7</td>
-<td align="center">7</td>
-<td align="center">0.07</td>
-</tr>
-<tr class="odd">
-<td align="center">8</td>
-<td align="center">4</td>
-<td align="center">0.04</td>
-</tr>
-<tr class="even">
-<td align="center">9</td>
+<td align="center">2</td>
 <td align="center">5</td>
 <td align="center">0.05</td>
 </tr>
 <tr class="odd">
-<td align="center">10</td>
+<td align="center">3</td>
+<td align="center">14</td>
+<td align="center">0.14</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">27</td>
+<td align="center">0.27</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">13</td>
+<td align="center">0.13</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">12</td>
+<td align="center">0.12</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">16</td>
+<td align="center">0.16</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">6</td>
+<td align="center">0.06</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
 <td align="center">3</td>
 <td align="center">0.03</td>
 </tr>
@@ -604,56 +591,61 @@ class="section level4">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">[10,15]</td>
+<td align="center">[5,10]</td>
 <td align="center">1</td>
 <td align="center">0.01</td>
 </tr>
 <tr class="even">
+<td align="center">(10,15]</td>
+<td align="center">1</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="odd">
 <td align="center">(15,20]</td>
-<td align="center">0</td>
-<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0.01</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="center">(20,25]</td>
-<td align="center">3</td>
-<td align="center">0.03</td>
-</tr>
-<tr class="even">
-<td align="center">(25,30]</td>
-<td align="center">8</td>
-<td align="center">0.08</td>
+<td align="center">5</td>
+<td align="center">0.05</td>
 </tr>
 <tr class="odd">
-<td align="center">(30,35]</td>
-<td align="center">19</td>
-<td align="center">0.19</td>
+<td align="center">(25,30]</td>
+<td align="center">9</td>
+<td align="center">0.09</td>
 </tr>
 <tr class="even">
+<td align="center">(30,35]</td>
+<td align="center">14</td>
+<td align="center">0.14</td>
+</tr>
+<tr class="odd">
 <td align="center">(35,40]</td>
 <td align="center">15</td>
 <td align="center">0.15</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="center">(40,45]</td>
-<td align="center">19</td>
-<td align="center">0.19</td>
-</tr>
-<tr class="even">
-<td align="center">(45,50]</td>
-<td align="center">18</td>
-<td align="center">0.18</td>
+<td align="center">20</td>
+<td align="center">0.2</td>
 </tr>
 <tr class="odd">
-<td align="center">(50,55]</td>
-<td align="center">10</td>
-<td align="center">0.1</td>
+<td align="center">(45,50]</td>
+<td align="center">22</td>
+<td align="center">0.22</td>
 </tr>
 <tr class="even">
+<td align="center">(50,55]</td>
+<td align="center">5</td>
+<td align="center">0.05</td>
+</tr>
+<tr class="odd">
 <td align="center">(55,60]</td>
 <td align="center">6</td>
 <td align="center">0.06</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="center">(60,65]</td>
 <td align="center">1</td>
 <td align="center">0.01</td>
@@ -687,12 +679,12 @@ class="section level4">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">12.52</td>
-<td align="center">34.1</td>
-<td align="center">40.55</td>
-<td align="center">41.37</td>
-<td align="center">47.85</td>
-<td align="center">60.23</td>
+<td align="center">6.048</td>
+<td align="center">31.58</td>
+<td align="center">39.77</td>
+<td align="center">40.67</td>
+<td align="center">47.57</td>
+<td align="center">60.98</td>
 </tr>
 </tbody>
 </table>
@@ -711,9 +703,9 @@ class="section level4">
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">47.71</td>
-<td align="center">89.81</td>
-<td align="center">9.477</td>
+<td align="center">54.94</td>
+<td align="center">108.1</td>
+<td align="center">10.4</td>
 </tr>
 </tbody>
 </table>
@@ -731,24 +723,24 @@ Frequências</h4>
 <hr />
 <div id="gráfico-de-setores" class="section level5">
 <h5>Gráfico de setores</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="gráfico-de-barras-para-variável-qualitativa"
 class="section level5">
 <h5>Gráfico de barras para variável qualitativa</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="gráfico-de-barras-para-variável-discreta"
 class="section level5">
 <h5>Gráfico de barras para variável discreta</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="gráfico-de-linhas" class="section level5">
 <h5>Gráfico de linhas</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
@@ -759,27 +751,27 @@ numéricas</h4>
 <hr />
 <div id="histograma" class="section level5">
 <h5>Histograma</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="densidade" class="section level5">
 <h5>Densidade</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="boxplot" class="section level5">
 <h5>Boxplot</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="histograma-boxplot" class="section level5">
 <h5>Histograma + Boxplot</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="histograma-boxplot-densidade" class="section level5">
 <h5>Histograma + Boxplot + Densidade</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
@@ -790,29 +782,29 @@ bivariadas</h4>
 <hr />
 <div id="diagrama-de-dispersão" class="section level5">
 <h5>Diagrama de dispersão</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="boxplots-para-níveis-de-um-fator" class="section level5">
 <h5>Boxplots para níveis de um fator</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-45-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="barras-para-variáveis-categóricas" class="section level5">
 <h5>Barras para variáveis categóricas</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-46-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="barras-proporcionais-para-2-variáveis-categóricas"
 class="section level5">
 <h5>Barras proporcionais para 2 variáveis categóricas</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-47-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 <div id="gráfico-de-mosaico-para-2-variáveis-categóricas"
 class="section level5">
 <h5>Gráfico de mosaico para 2 variáveis categóricas</h5>
-<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="0_exploratoria_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
 </div>
