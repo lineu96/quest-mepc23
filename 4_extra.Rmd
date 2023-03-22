@@ -52,8 +52,8 @@ knitr::opts_chunk$set(echo = TRUE, cache = FALSE)
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE}
 
 quest_23$indica_foto <- c(rep('C/ barba', 103),
-                          rep('S/ barba', 101)#,
-                          #rep('C/ barba', 50),
+                          rep('S/ barba', 101),
+                          rep('C/ barba', 117)#,
                           #rep('S/ barba', 50)
                           ) 
 
@@ -354,12 +354,12 @@ ggarrange(p1, p2,
 idade_foto1 <- subset(idade_foto, indica_foto == 'C/ barba')$idade_foto
 idade_foto2 <- subset(idade_foto, indica_foto == 'S/ barba')$idade_foto
 
-h <- hist(idade_foto1, plot = FALSE) #histograma
+h <- hist(idade_foto$idade_foto, plot = FALSE) #histograma
 
 breaks <- h$breaks #armazenando os breaks do histograma 
 
 classes1 <- cut(idade_foto1, breaks = breaks, 
-               include.lowest = TRUE, right = TRUE) #gerando classes
+                include.lowest = TRUE, right = TRUE) #gerando classes
 
 classes2 <- cut(idade_foto2, breaks = breaks, 
                 include.lowest = TRUE, right = TRUE) #gerando classes

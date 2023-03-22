@@ -522,9 +522,10 @@ ggplot(data = table2, aes(x = reorder(Niveis, Frequencia),
 
 ---
 
-#### Comparativo
+
 
 ```{r, comment=FALSE, message=FALSE, fig.align='center', warning=TRUE, echo = FALSE, fig.height=12}
+#### Comparativo
 
 # compara <- 
 #   rbind(

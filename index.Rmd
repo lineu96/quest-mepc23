@@ -39,6 +39,16 @@ Após a realização do questionário os dados são exportados em formato csv e 
 
 ---
 
+Esta atividade é feita desde a primeira oferta da disciplina e a cada ano aprimoramos tanto o formulário quanto as análises feitas. Contribuíram para este material:
+
+ - 2018 - **Hektor Dannyel Vieira Brasil.**
+ - 2019 - **Kally Chung.**
+ - 2020 - 2023 - **Lineu Alberto Cavazani de Freitas.**
+
+Todas as versões foram desenvolvidas sob a orientação do professor coordenador da disciplina: **Paulo Justiniano Ribeiro Junior**.
+
+---
+
 O questionário deste ano foi dividido nas seguintes seções:
 
  - Questões acadêmicas.
